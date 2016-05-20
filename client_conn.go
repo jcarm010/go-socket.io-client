@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/zhouhui8915/engine.io-go/message"
-	"github.com/zhouhui8915/engine.io-go/parser"
-	"github.com/zhouhui8915/engine.io-go/polling"
-	"github.com/zhouhui8915/engine.io-go/transport"
-	"github.com/zhouhui8915/engine.io-go/websocket"
+	"github.com/jcarm010/engine.io-go/message"
+	"github.com/jcarm010/engine.io-go/parser"
+	"github.com/jcarm010/engine.io-go/polling"
+	"github.com/jcarm010/engine.io-go/transport"
+	"github.com/jcarm010/engine.io-go/websocket"
 	"io"
 	"net/http"
 	"net/url"
@@ -341,6 +341,9 @@ func (c *clientConn) onOpen() error {
 		}
 
 		c.request.URL.Scheme = "ws"
+		if strings.Index(c.url.String(), "https://") == 0 {
+			c.request.URL.Scheme = "wss"
+		}
 		q.Set("sid", c.id)
 		q.Set("transport", "websocket")
 		c.request.URL.RawQuery = q.Encode()

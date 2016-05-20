@@ -1,7 +1,7 @@
 package socketio_client
 
 import (
-	"github.com/zhouhui8915/engine.io-go/parser"
+	"github.com/jcarm010/engine.io-go/parser"
 	"io"
 	"sync"
 )
